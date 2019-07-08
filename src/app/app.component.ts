@@ -4,13 +4,13 @@ import { UserService } from './user.service';
 @Component({
   selector: 'lf-root',
   template: `
-    <div *ngIf="user.uid | async as uid">
+    <div *ngIf="user.uid | async as uid; else login">
       The user is logged in {{ uid }}
       <div *ngIf="user.isAdmin | async">The user also has ADMIN power</div>
-      <div><button>Logout</button></div>
+      <div><button (click)="user.logout()">Logout</button></div>
     </div>
     <ng-template #login>
-      You need to login: <button>Login</button>
+      You need to login: <button (click)="user.login()">Login</button>
     </ng-template>
   `,
   styles: [],
